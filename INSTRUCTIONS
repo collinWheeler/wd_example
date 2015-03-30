@@ -1,0 +1,23 @@
+Install a Ubuntu Desktop VM,  we will need a web browser eventually.
+
+apt-get install nodejs
+apt-get install npm
+apt-get install mongodb
+mkdir project; cd project
+npm install express mocha wd selenium-server urlencoded-request-parser express-json body-parser
+npm install urlencoded-request-parser body-parser underscore colors async q chai chai-as-promised wd supertest
+npm install -g nodemon
+
+
+Create a simple web site with the following characteristics:
+
+
+Login page that takes a user name and password.
+Main page that goes to three other pages.
+The three other pages should have a links back to the main page.
+All three pages should have separate forms that fill in tables on the same page with info from the form.  Store tables entries in in server variables.
+
+Then try the following in three windows:
+nodemon app.js
+java -jar selenium-server-standalone-2.45.0.jar
+mocha test.js
