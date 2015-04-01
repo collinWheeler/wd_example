@@ -3,10 +3,17 @@ Install a Ubuntu Desktop VM,  we will need a web browser eventually.
 apt-get install nodejs
 apt-get install npm
 apt-get install mongodb
+apt-get install openjdk-7-jre-headless
 mkdir project; cd project
 npm install express mocha wd selenium-server urlencoded-request-parser express-json body-parser
 npm install urlencoded-request-parser body-parser underscore colors async q chai chai-as-promised wd supertest
+
+#npm install will install all the packages in package.json
+npm install
+
+# Globally install so that you can run the executables
 npm install -g nodemon
+npm install -g mocha
 
 
 Create a simple web site with the following characteristics:
@@ -21,3 +28,5 @@ Then try the following in three windows:
 nodemon app.js
 java -jar selenium-server-standalone-2.45.0.jar
 mocha test.js
+if your curious open a browser in http://localhost:8088
+

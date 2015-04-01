@@ -1,0 +1,26 @@
+{
+    "name": "AWTE",
+    "version": "0.0.1",
+    "description": "Automated Web Testing Example",
+    "dependencies": {
+        "express": "latest",
+        "body-parser": "latest",
+        "mongodb": "latest",
+        "mocha": "latest",
+        "supertest": "latest",
+        "chai": "latest",
+        "superagent": "latest",
+        "wd": "latest",
+        "colors": "latest",
+        "selenium-server": "latest",
+        "selenium-chromedriver": "latest",
+	"urlencoded-request-parser": "latest",
+	"express-json": "latest",
+	"underscore": "latest", 
+	"async": "latest",
+	"q": "latest",
+	"chai-as-promised": "latest"
+
+    },
+    "author": "Kevin Tew"
+}
