@@ -19,6 +19,7 @@
 	"underscore": "latest", 
 	"async": "latest",
 	"q": "latest",
+        "cheerio":"latest",
 	"chai-as-promised": "latest"
 
     },

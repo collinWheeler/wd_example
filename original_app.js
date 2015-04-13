@@ -1,17 +1,6 @@
 var express = require('express');
 var app = express();
 var path = require("path");
-var cheerio = require("cheerio");
-var fs=require("fs");
-
-
-
-
-app.get("/test",function(req,res){
-    $ = get_page('magic_page.html');
-    $('#magic').text('Here is some new text!');
-    res.send($.html())
-})
 
 app.get("/login", function (req, res) {
     res.sendFile(path.join(__dirname + "/login.html"));
@@ -25,8 +14,6 @@ app.get("/home", function (req, res) {
             var thealert = "alert('INCORRECT NAME OR PASSWORD! THE HOUNDS HAVE BEEN RELEASED!')";
         }
     }
-    $=get_page('home.html')
-    res.send($.html());
 });
 
 app.get("/form1", function (req, res) {
@@ -34,11 +21,7 @@ app.get("/form1", function (req, res) {
     if (input == undefined) {
         input = '';
     }
-    $=get_page('form1.html');
-    $('#val').text(input);
-    $('#textbox').val(input);
-    res.send($.html());
-    //res.send("<html> <body><a href='home'>Home</a> <h1> Entered value: " + input + "</h1><form action='' method='get'><input type='text' name='kevin' value='" + input + "'><input type='submit' value='Change Value'></form>  </body> </html>")
+    res.send("<html> <body><a href='home'>Home</a> <h1> Entered value: " + input + "</h1><form action='' method='get'><input type='text' name='kevin' value='" + input + "'><input type='submit' value='Change Value'></form>  </body> </html>")
 });
 
 app.post("/form22", function (req, res) {
@@ -54,7 +37,3 @@ app.get("/form3", function (req, res) {
 
 app.listen(8088, function () {
 });
-
-function get_page(filepath){
-    return cheerio.load(fs.readFileSync(filepath));
-}
