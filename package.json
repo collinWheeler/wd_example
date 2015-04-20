@@ -20,7 +20,8 @@
 	"async": "latest",
 	"q": "latest",
         "cheerio":"latest",
-	"chai-as-promised": "latest"
+	"chai-as-promised": "latest",
+        "mysql":"latest"
 
     },
     "author": "Kevin Tew"
