@@ -8,12 +8,6 @@ var mysql = require('mysql');
 app.use(bodyParser.urlencoded());
 
 
-app.get("/censor",function(req,res){
-   if(req.query.censor) {
-       
-   }
-});
-
 app.get("/test", function (req, res) {
     $ = get_page('magic_page.html');
     $('#magic').text('Here is some new text!');
@@ -35,6 +29,7 @@ app.get("/home", function (req, res) {
     $ = get_page('home.html')
     res.send($.html());
 });
+
 
 app.get("/form1", function (req, res) {
     var input = req.query.kevin;
@@ -60,7 +55,10 @@ app.post("/form2", function (req, res) {
     var postData = req.body;
 
     var $ = get_page('form2_results.html');
-    var connection = mysql.createConnection({
+    var jsonfile=fs.readFile('employees.json');
+   // var thejson=JSON.parse(jsonfile);
+    res.send(jsonfile);
+    /*var connection = mysql.createConnection({
         host: 'localhost',
         user: 'root',
         password: 'root',
@@ -70,9 +68,9 @@ app.post("/form2", function (req, res) {
     //connection.query('INSERT INTO entries VALUES (0,"test");');
     connection.query('SELECT * from entries', function (err, rows, fields) {
         if (!err) {
-            /*rows.forEach(function (entryRow) {
+            rows.forEach(function (entryRow) {
                 $('#results').append('<p>Entry: ' + entryRow.entry + '</p>')
-            })*/
+            })
             for(var i=0;i<rows.length;i++){
                 var entryRow=rows[0];
                 $('#results').append('<p>Entry: ' + entryRow.entry + '</p>');
@@ -82,7 +80,7 @@ app.post("/form2", function (req, res) {
         }
     });
     connection.end();
-    res.send($.html());
+    res.send($.html());*/
 });
 app.get("/form2", function (req, res) {
     $ = get_page('form2.html');
@@ -97,7 +95,8 @@ app.listen(8088, function () {
 });
 
 function get_page(filepath) {
-    return cheerio.load(fs.readFileSync(filepath));
+    var thefile=fs.readFileSync(filepath);
+    return cheerio.load(thefile);
 }
 
 function db_connect() {
