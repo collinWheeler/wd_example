@@ -47,54 +47,34 @@ app.get("/magic",function(req,res){
     $=get_page('magic_page.html')
     var query=req.query;
     var target=$('body')
-    if(query.color){
+    /*if(query.color){
         target.css('color',query.color);
-    }
-    if(query.bcolor){
-        target.css('background-color',query.bcolor);
-    }
-    if(query.fontSize){
-        target.css('font-size',query.fontSize);
-    }
-    if(query.font){
-        target.css('font-family',query.font)
+    }*/
+    for(key in query){
+        target.css(key,query[key])
     }
     res.send($.html());
 });
 
 app.post("/form2", function (req, res) {
     var postData = req.body;
-
     var $ = get_page('form2_results.html');
-    var jsonfile=fs.readFile('employees.json');
-   // var thejson=JSON.parse(jsonfile);
-    res.send(jsonfile);
-    /*var connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'root',
-        database: 'js'
-    });
-    connection.connect();
-    //connection.query('INSERT INTO entries VALUES (0,"test");');
-    connection.query('SELECT * from entries', function (err, rows, fields) {
-        if (!err) {
-            rows.forEach(function (entryRow) {
-                $('#results').append('<p>Entry: ' + entryRow.entry + '</p>')
-            })
-            for(var i=0;i<rows.length;i++){
-                var entryRow=rows[0];
-                $('#results').append('<p>Entry: ' + entryRow.entry + '</p>');
-            }
-        } else {
-            $('#results').append('Query Error');
-        }
-    });
-    connection.end();
-    res.send($.html());*/
+    $('#results').text('Result: '+postData.entry_text+'');
+    res.send($.html());
 });
 app.get("/form2", function (req, res) {
     $ = get_page('form2.html');
+    res.send($.html());
+});
+
+app.get('/json',function(req,res){
+    $=get_page('json.html');
+    var jsonfile=fs.readFileSync('employees.json');
+    var thejson=JSON.parse(jsonfile);
+    for(var i=0;i<thejson.length;i++){
+        var entry=thejson[i];
+        $('ul').append('<li>'+entry.firstName+' '+entry.lastName+'</li>');
+    }
     res.send($.html());
 });
 
@@ -110,7 +90,7 @@ function get_page(filepath) {
     return cheerio.load(thefile);
 }
 
-function db_connect() {
+/*function db_connect() {
     return mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -141,4 +121,4 @@ function db_test() {
     });
 
     connection.end();
-}
+}*/
