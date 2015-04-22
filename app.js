@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded());
 
 app.get("/test", function (req, res) {
     $ = get_page('magic_page.html');
-    $('#magic').text('Here is some new text!');
+    $('#magic').text('Here is some new text!!!');
     res.send($.html())
 })
 
@@ -45,8 +45,19 @@ app.get("/form1", function (req, res) {
 
 app.get("/magic",function(req,res){
     $=get_page('magic_page.html')
-    if(req.query.var=='blue'){
-        $('body').css('background-color','lightblue');
+    var query=req.query;
+    var target=$('body')
+    if(query.color){
+        target.css('color',query.color);
+    }
+    if(query.bcolor){
+        target.css('background-color',query.bcolor);
+    }
+    if(query.fontSize){
+        target.css('font-size',query.fontSize);
+    }
+    if(query.font){
+        target.css('font-family',query.font)
     }
     res.send($.html());
 });
